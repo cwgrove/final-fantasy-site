@@ -19,19 +19,41 @@
   </div>
 </div>
 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="cimage">Current Character Image</label>
-  <div class="col-md-4">
-    <img src="{{$a->cimage}}" style="width:300px;">
-  </div>
-</div>
+<?php
+  
+		$filetype = $a->typemime;
+		$basefiletype = substr($filetype, 0, 5);
+
+	  
+	if ($basefiletype == 'image'){
+	?>
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="uploadedfile">Current Character Image</label>
+			<div class="col-md-4">
+				<img src="{{$a->uploadedfile}}" style="width:300px;">
+			</div>
+		</div>
+	<?php
+	  } else {
+	?>
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="uploadedfile">Current Character Video</label>
+			<div class="col-md-4">
+				<video width="400" controls>
+					<source src="{{$a->uploadedfile}}" type="{{$filetype}}">
+					Your browser does not support HTML5 video.
+				</video>
+			</div>
+		</div>
+	<?php } ?>
+
 
 
 <!-- File Button --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="cimage">Character Image</label>
+  <label class="col-md-4 control-label" for="uploadedfile">Character Image</label>
   <div class="col-md-4">
-    <input id="cimage" name="cimage" class="input-file" type="file">
+    <input id="uploadedfile" name="uploadedfile" class="input-file" type="file">
   </div>
 </div>
 

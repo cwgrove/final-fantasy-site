@@ -36,6 +36,12 @@ Route::get('/{id}', 'CharacterController@show');
 //Add post form
 Route::get('/share/add', 'CharacterController@create');
 
+//Displays videos
+Route::get('/share/video', 'VideoController@create');
+
+//Displays videos
+Route::post('/share/video', 'VideoController@generate');
+
 //Store post
 Route::post('/share/add', 'CharacterController@store');
 

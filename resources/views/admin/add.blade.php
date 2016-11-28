@@ -21,9 +21,9 @@
 
 <!-- File Button --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="cimage">Character Image</label>
+  <label class="col-md-4 control-label" for="uploadedfile">Character Image</label>
   <div class="col-md-4">
-    <input id="cimage" name="cimage" class="input-file" type="file">
+    <input id="uploadedfile" name="uploadedfile" class="input-file" type="file">
   </div>
 </div>
 

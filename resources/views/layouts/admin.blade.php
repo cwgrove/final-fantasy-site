@@ -36,13 +36,14 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <p class="site-title">Final Fantasy Archive</p>
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+					<img src="/resources/crystal.png" width="25px" style="float:left;">
                         &nbsp;
                     </ul>
 
@@ -51,10 +52,10 @@
                         <!-- Authentication Links -->
 
                         <li><a href="/">Home</a></li>
-                        <li><a href="/heroes">heroes</a></li>
+                        <li><a href="/heroes">Heroes</a></li>
                         <li><a href="/villains">Villains</a></li>
 						<li><a href="/summons">Summons</a></li>
-                        <li><a href="/share">Add New Character</a></li>
+                        <li><a href="/share/add">Add New Character</a></li>
                     </ul>
                 </div>
             </div>
