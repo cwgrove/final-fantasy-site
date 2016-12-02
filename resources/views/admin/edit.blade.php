@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <form method="post" action="/share/edit/{{$a->id}}" class="form-horizontal" enctype="multipart/form-data">
 <fieldset>
 
@@ -51,7 +52,7 @@
 
 <!-- File Button --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="uploadedfile">Character Image</label>
+  <label class="col-md-4 control-label" for="uploadedfile">Character Image/Video</label>
   <div class="col-md-4">
     <input id="uploadedfile" name="uploadedfile" class="input-file" type="file">
   </div>

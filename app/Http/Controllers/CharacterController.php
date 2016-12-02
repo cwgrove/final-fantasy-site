@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\EmailController;
 use Illuminate\Http\Request;
+use FFMPEG\FFMPEG;
 
 //calling in the Character Model Class.
 use App\Character;
@@ -144,7 +145,6 @@ public function store()
 		$cmd = "ffmpeg -i $video -deinterlace -an -ss $second -t 00:00:01 -r 1 -y -vcodec mjpeg -f mjpeg $image 2>&1";
 		//$do = $cmd;
 		shell_exec($cmd);
-
 		
 	}
 
@@ -182,6 +182,7 @@ public function update($id)
   	  //Checking uploaded file type
 	  $filetype = $file->getMimeType();
 	  $b->typemime = $filetype;
+	  $basefiletype = substr($filetype, 0, 5);
 	//Set date and unix timestamp to create uniquely name files
 	$today = date('m-d-Y');
 	$timestamp = time() - date('Z');
@@ -217,10 +218,41 @@ if($alliance == "hero"){
 
     $dpath = public_path("resources");
     //$p = $file->move($dpath,$fname);
-	$p = $file->move($dpath,$today.' '.$timestamp.'-'.$fname );
-	$b->uploadedfile = "/resources/".$today.' '.$timestamp.'-'.$fname;
+	$p = $file->move($dpath,$today.'-'.$timestamp.'-'.$fname );
+	$b->uploadedfile = "/resources/".$today.'-'.$timestamp.'-'.$fname;
   }
 		$b->postauthor = 'admin';
+		
+	if ($basefiletype == 'video'){
+		
+		//$ffmpeg = url('/').'/vendor/ffmpeg/bin/ffmpeg.exe';
+		//video dir
+		$video = $b->uploadedfile;
+		$video_url = url('/').$video;
+		$thumbnail_url = 'public/resources/thumbnails/';
+		//where to save the image
+		$thumbnail_image = $thumbnail_url.$today.'-'.$timestamp.'-'.$fname.'.png';
+
+			//Below are failed tests of the URL I use. All outputs are the same just the Shell command is not running properly. The site locks up indefinietly.
+		//ffmpeg command
+		//$cmd = escapeshellcmd("ffmpeg -i $video_url -ss 00:00:10 -vframes 1 $thumbnail_image");  
+		//$cmd = "ffmpeg -i http://localhost:8000/resources/12-02-2016-1480709024-I-can-see.mp4 -ss 00:00:10 -vframes 1 public/resources/thumbnails/12-02-2016-1480709024-I-can-see.mp4.png"; 
+		//return "ffmpeg -i ".$video_url." -ss 00:00:10 -vframes 1 ".$thumbnail_image;
+		
+		//return $cmd;		
+		shell_exec($cmd);
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		$b->save();
   		return back();
 }
